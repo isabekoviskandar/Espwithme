@@ -7,12 +7,14 @@ use App\Api\Requests\RegisterRequest;
 use App\Api\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class AuthService
 {
 
     public function login(LoginRequest $request)
     {
+        Log::info($request->validated());
         $loginField = $request->validated();
 
         if (!Auth::attempt($loginField)) {
@@ -33,12 +35,14 @@ class AuthService
 
     public function register(RegisterRequest $request)
     {
-        $newUser = $request->validated();
-        $user = User::create($newUser);
+        $data = $request->validated();
+
+        $data['password'] = bcrypt($data['password']);
+
+        $user = User::create($data);
 
         return response()->json([
-            'message' => 'User registered succesfully',
-        ] , 200);
+            'message' => 'User registered successfully',
+        ], 200);
     }
-
 }
