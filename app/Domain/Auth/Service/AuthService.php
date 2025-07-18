@@ -6,7 +6,9 @@ use App\Api\Requests\LoginRequest;
 use App\Api\Requests\RegisterRequest;
 use App\Api\Resources\UserResource;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 
 class AuthService
@@ -44,5 +46,34 @@ class AuthService
         return response()->json([
             'message' => 'User registered successfully',
         ], 200);
+    }
+
+    public function user()
+    {
+        $user = Auth::user();
+
+        return new UserResource($user);
+    }
+    
+    public function change_password(Request $request)
+    {
+        $user = Auth::user();
+
+        $validated = $request->validate([
+            'password' => 'required|string|min:6',
+            'new_password' => 'required|string|min:6'
+        ]);
+
+        if (!Hash::check($validated['password'], $user->password)) {
+            return response()->json([
+                'message' => 'Sorry old password is incorrect',
+            ]);
+        }
+
+        $user->update(['password' => Hash::make($validated['new_password'])]);
+
+        return response()->json([
+            'message' => 'Password updated successfully',
+        ]);
     }
 }

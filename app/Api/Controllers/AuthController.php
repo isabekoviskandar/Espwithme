@@ -29,4 +29,14 @@ class AuthController extends Controller
     {
         return $this->authService->register($request);
     }
+
+    public function user()
+    {
+        return $this->authService->user();
+    }
+    
+    public function change_password(Request $request)
+    {
+        return $this->authService->change_password($request);
+    }
 }
