@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             'username' => 'isabekoff',
             'phone' => '+998950200926',
             'role' => 'admin',
-            'email' => 'iskandarisabrkov@gmail.com',
+            'email' => 'espadmin@gmail.com',
             'password' => bcrypt('password'),
         ]);
     }
