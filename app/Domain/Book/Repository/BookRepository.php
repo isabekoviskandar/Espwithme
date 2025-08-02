@@ -21,7 +21,6 @@ class BookRepository implements BookInterface
 
     public function create(CreateBookRequest $request)
     {
-        Log::info($request->validated());
         $validated = $request->validated();
 
         if ($request->hasFile('image')) {
