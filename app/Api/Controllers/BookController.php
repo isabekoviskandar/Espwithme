@@ -25,7 +25,6 @@ class BookController extends Controller
 
     public function create(CreateBookRequest $request)
     {
-        Log::info('Something');
         return $this->bookSer->create($request);
     }
 

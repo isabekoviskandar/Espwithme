@@ -2,6 +2,7 @@
 
 use App\Api\Controllers\AuthController;
 use App\Api\Controllers\BookController;
+use App\Api\Controllers\GenreController;
 use App\Http\Controllers\BookCategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,16 +22,16 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 
+Route::prefix('genre')->group( function (){
+    Route::get('/index' , [GenreController::class , 'index']);
+    Route::post('/create' , [GenreController::class , 'create']);
+    Route::put('/update' , [GenreController::class , 'update']);
+    Route::delete('/delete' , [GenreController::class , 'delete']);
+});
+
 Route::prefix('book')->group( function(){
     Route::get('/index' , [BookController::class , 'index']);
     Route::post('/create' , [BookController::class , 'create']);
     Route::put('/update/{id}' , [BookController::class , 'update']);
     Route::delete('/delete/{id}' , [BookController::class , 'delete']);
-});
-
-Route::prefix('book-category')->group( function(){
-    Route::get('/index' , [BookCategoryController::class , 'index']);
-    Route::post('/create' , [BookCategoryController::class , 'create']);
-    Route::put('/update/{id}' , [BookCategoryController::class , 'update']);
-    Route::delete('/delete/{id}' , [BookCategoryController::class , 'delete']);
 });

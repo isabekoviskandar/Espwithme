@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Domain\BookCategory\Model;
+namespace App\Domain\Genre\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class BookCategory extends Model
+class Genre extends Model
 {
     protected $fillable = [
         'name',

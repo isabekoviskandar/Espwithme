@@ -1,0 +1,37 @@
+<?php
+
+namespace App\Api\Controllers;
+
+use App\Domain\Genre\Service\GenreService;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
+class GenreController extends Controller
+{
+    public $genreService;
+
+    public function __construct(GenreService $genreService)
+    {
+        $this->genreService = $genreService;
+    }
+
+    public function index()
+    {
+        return $this->genreService->index();
+    }
+
+    public function create()
+    {
+        return $this->genreService->create();
+    }
+
+    public function update()
+    {
+        return $this->genreService->update();
+    }
+
+    public function delete()
+    {
+        return $this->genreService->delete();
+    }
+}
