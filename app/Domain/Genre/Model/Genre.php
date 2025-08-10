@@ -2,6 +2,7 @@
 
 namespace App\Domain\Genre\Model;
 
+use App\Domain\Book\Model\Book;
 use Illuminate\Database\Eloquent\Model;
 
 class Genre extends Model
@@ -11,4 +12,9 @@ class Genre extends Model
         'logo',
         'status',
     ];
+
+    public function genre()
+    {
+        return $this->hasMany(Book::class, 'genre_id');
+    }
 }

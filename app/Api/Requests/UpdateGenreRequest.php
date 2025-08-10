@@ -4,7 +4,7 @@ namespace App\Api\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateBookRequest extends FormRequest
+class UpdateGenreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,13 +22,7 @@ class CreateBookRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'genre_id' => 'required',
-            'title' => 'required|string',
-            'author' => 'required|string',
-            'genre' => 'required|string',
-            'description' => 'required|string',
-            'image' => 'required|mimes:png,jpg,jpeg|max:10000',
-            'file' => 'required|mimes:pdf,txt,docs',
+            //
         ];
     }
 }

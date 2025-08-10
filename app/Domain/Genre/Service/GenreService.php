@@ -3,6 +3,7 @@
 
 namespace App\Domain\Genre\Service;
 
+use App\Api\Requests\CreateGenreRequest;
 use App\Domain\Genre\Repository\GenreRepository;
 
 class GenreService{
@@ -20,9 +21,9 @@ class GenreService{
         return $this->genreRepository->index();
     }
 
-    public function create()
+    public function create(CreateGenreRequest $request)
     {
-        return $this->genreRepository->create();
+        return $this->genreRepository->create($request);
     }
 
     public function update()
