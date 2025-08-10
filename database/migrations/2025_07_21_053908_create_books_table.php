@@ -16,7 +16,6 @@ return new class extends Migration
             $table->foreignId('genre_id')->constrained('genres')->onDelete('cascade');
             $table->string('title');
             $table->string('author');
-            $table->string('genre');
             $table->text('description');
             $table->string('image');
             $table->string('file');

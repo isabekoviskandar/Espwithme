@@ -12,7 +12,6 @@ class Book extends Model
         'genre_id',
         'title',
         'author',
-        'genre',
         'description',
         'image',
         'file',

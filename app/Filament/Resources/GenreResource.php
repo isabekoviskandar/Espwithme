@@ -38,7 +38,7 @@ class GenreResource extends Resource
                     ])
                     ->required(),
 
-                FileUpload::make('logo')->nullable(),
+                FileUpload::make('logo')->image()->nullable(),
             ]);
     }
 
@@ -58,7 +58,7 @@ class GenreResource extends Resource
                     ->badge() // Optional: Makes them look like badges
                     ->color(function ($state) {
                         if (is_array($state)) {
-                            return null; 
+                            return null;
                         }
                         return match ($state) {
                             'active' => 'success',
@@ -68,13 +68,18 @@ class GenreResource extends Resource
                         };
                     }),
 
-                ImageColumn::make('logo'),
+                ImageColumn::make('logo')
+                    ->disk('public') // or the disk where you store files
+                    ->square() // optional: crop as square
+                    ->size(50), // optional: pixel size
+
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
