@@ -36,7 +36,6 @@ class GenreResource extends Resource
                         'inactive' => 'Inactive',
                         'pending' => 'Pending',
                     ])
-                    ->multiple()
                     ->required(),
 
                 FileUpload::make('logo')->nullable(),
