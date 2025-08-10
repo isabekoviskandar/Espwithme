@@ -30,7 +30,15 @@ class GenreResource extends Resource
         return $form
             ->schema([
                 TextInput::make('name')->required(),
-                Select::make('status')->nullable(),
+                Select::make('status')
+                    ->options([
+                        'active' => 'Active',
+                        'inactive' => 'Inactive',
+                        'pending' => 'Pending',
+                    ])
+                    ->multiple()
+                    ->required(),
+
                 FileUpload::make('logo')->nullable(),
             ]);
     }
@@ -40,7 +48,27 @@ class GenreResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name'),
-                IconColumn::make('status'),
+                TextColumn::make('status')
+                    ->formatStateUsing(function ($state) {
+                        if (is_array($state)) {
+                            return implode(', ', $state);
+                        }
+
+                        return $state;
+                    })
+                    ->badge() // Optional: Makes them look like badges
+                    ->color(function ($state) {
+                        if (is_array($state)) {
+                            return null; 
+                        }
+                        return match ($state) {
+                            'active' => 'success',
+                            'inactive' => 'danger',
+                            'pending' => 'warning',
+                            default => 'secondary',
+                        };
+                    }),
+
                 ImageColumn::make('logo'),
             ])
             ->filters([
