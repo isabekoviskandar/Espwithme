@@ -42,7 +42,7 @@ class VideoLessonResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('category'),
+                TextColumn::make('category_id'),
                 TextColumn::make('title'),
                 Textarea::make('description'),
             ])
