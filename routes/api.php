@@ -4,6 +4,7 @@ use App\Api\Controllers\AuthController;
 use App\Api\Controllers\BookController;
 use App\Api\Controllers\CategoryController;
 use App\Api\Controllers\GenreController;
+use App\Api\Controllers\VideoLessonController;
 use App\Http\Controllers\BookCategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -37,6 +38,9 @@ Route::prefix('book')->group( function(){
     Route::delete('/delete/{id}' , [BookController::class , 'delete']);
 });
 
+Route::prefix('videolesson')->group( function() {
+    Route::get('index' , [VideoLessonController::class , 'index']);
+});
 
 Route::prefix('category')->group( function (){
     Route::get('/index' , [CategoryController::class , 'index']);
