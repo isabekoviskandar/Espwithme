@@ -28,7 +28,7 @@ class VideoLessonResource extends Resource
         return $form
             ->schema([
                 Select::make('category_id')
-                    ->relationship('category' , 'name')
+                    ->relationship('category', 'name')
                     ->searchable()
                     ->preload()
                     ->required(),
@@ -42,9 +42,11 @@ class VideoLessonResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('category_id'),
+                Tables\Columns\TextColumn::make('category.name')->label('Category'),
+
                 TextColumn::make('title'),
-                Textarea::make('description'),
+                Tables\Columns\TextColumn::make('description')->limit(50),
+
             ])
             ->filters([
                 //
