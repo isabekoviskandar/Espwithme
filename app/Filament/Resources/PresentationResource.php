@@ -45,7 +45,7 @@ class PresentationResource extends Resource
             ->columns([
                 TextColumn::make('category.name')->label('Category'),
                 TextColumn::make('title'),
-                Textarea::make('description'),
+                TextColumn::make('description'),
                 TextColumn::make('file')
                     ->label('File')
                     ->formatStateUsing(fn($state) => $state ? 'Download' : '—')
