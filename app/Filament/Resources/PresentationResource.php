@@ -2,10 +2,11 @@
 
 namespace App\Filament\Resources;
 
-use App\Domain\VideoLesson\Model\VideoLesson;
-use App\Filament\Resources\VideoLessonResource\Pages;
-use App\Filament\Resources\VideoLessonResource\RelationManagers;
+use App\Filament\Resources\PresentationResource\Pages;
+use App\Filament\Resources\PresentationResource\RelationManagers;
+use App\Models\Presentation;
 use Filament\Forms;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -17,9 +18,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class VideoLessonResource extends Resource
+class PresentationResource extends Resource
 {
-    protected static ?string $model = VideoLesson::class;
+    protected static ?string $model = Presentation::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -34,7 +35,7 @@ class VideoLessonResource extends Resource
                     ->required(),
                 TextInput::make('title'),
                 Textarea::make('description'),
-                TextInput::make('source_url'),
+                FileUpload::make('file'),
             ]);
     }
 
@@ -42,11 +43,14 @@ class VideoLessonResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('category.name')->label('Category'),
-
+                TextColumn::make('category.name')->label('Category'),
                 TextColumn::make('title'),
-                Tables\Columns\TextColumn::make('description')->limit(50),
-
+                Textarea::make('description'),
+                TextColumn::make('file')
+                    ->label('File')
+                    ->formatStateUsing(fn($state) => $state ? 'Download' : '—')
+                    ->url(fn($record) => $record->file ? asset('storage/' . $record->file) : null, true)
+                    ->openUrlInNewTab(),
             ])
             ->filters([
                 //
@@ -71,9 +75,9 @@ class VideoLessonResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListVideoLessons::route('/'),
-            'create' => Pages\CreateVideoLesson::route('/create'),
-            'edit' => Pages\EditVideoLesson::route('/{record}/edit'),
+            'index' => Pages\ListPresentations::route('/'),
+            'create' => Pages\CreatePresentation::route('/create'),
+            'edit' => Pages\EditPresentation::route('/{record}/edit'),
         ];
     }
 }
