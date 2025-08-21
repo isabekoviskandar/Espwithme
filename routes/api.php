@@ -14,8 +14,11 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 
-Route::post('/login', [AuthController::class, 'login']);
-Route::post('/register', [AuthController::class, 'register']);
+Route::prefix('auth')->group(function () {
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/register', [AuthController::class, 'register']);
+});
+
 
 
 Route::middleware('auth:sanctum')->group(function () {
@@ -24,24 +27,24 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 
-Route::prefix('genre')->group( function (){
-    Route::get('/index' , [GenreController::class , 'index']);
-    Route::post('/create' , [GenreController::class , 'create']);
-    Route::put('/update' , [GenreController::class , 'update']);
-    Route::delete('/delete' , [GenreController::class , 'delete']);
+Route::prefix('genre')->group(function () {
+    Route::get('/index', [GenreController::class, 'index']);
+    Route::post('/create', [GenreController::class, 'create']);
+    Route::put('/update', [GenreController::class, 'update']);
+    Route::delete('/delete', [GenreController::class, 'delete']);
 });
 
-Route::prefix('book')->group( function(){
-    Route::get('/index' , [BookController::class , 'index']);
-    Route::post('/create' , [BookController::class , 'create']);
-    Route::put('/update/{id}' , [BookController::class , 'update']);
-    Route::delete('/delete/{id}' , [BookController::class , 'delete']);
+Route::prefix('book')->group(function () {
+    Route::get('/index', [BookController::class, 'index']);
+    Route::post('/create', [BookController::class, 'create']);
+    Route::put('/update/{id}', [BookController::class, 'update']);
+    Route::delete('/delete/{id}', [BookController::class, 'delete']);
 });
 
-Route::prefix('videolesson')->group( function() {
-    Route::get('index' , [VideoLessonController::class , 'index']);
+Route::prefix('videolesson')->group(function () {
+    Route::get('index', [VideoLessonController::class, 'index']);
 });
 
-Route::prefix('category')->group( function (){
-    Route::get('/index' , [CategoryController::class , 'index']);
+Route::prefix('category')->group(function () {
+    Route::get('/index', [CategoryController::class, 'index']);
 });

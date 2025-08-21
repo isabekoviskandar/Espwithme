@@ -16,7 +16,6 @@ class AuthService
 
     public function login(LoginRequest $request)
     {
-        Log::info($request->validated());
         $loginField = $request->validated();
 
         if (!Auth::attempt($loginField)) {
@@ -37,7 +36,8 @@ class AuthService
 
     public function register(RegisterRequest $request)
     {
-        $data = $request->validated();
+        Log::info($request);
+        $data = $request;
 
         $data['password'] = bcrypt($data['password']);
 
