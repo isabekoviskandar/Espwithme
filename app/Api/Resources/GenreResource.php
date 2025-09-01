@@ -19,7 +19,6 @@ class GenreResource extends JsonResource
             'name'          =>$this->name,
             'logo'          =>$this->logo,
             'status'        =>$this->status,
-            
         ];
     }
 }

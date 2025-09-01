@@ -25,9 +25,9 @@ class GenreController extends Controller
         return $this->genreService->create($request);
     }
 
-    public function update()
+    public function update($request , $id)
     {
-        return $this->genreService->update();
+        return $this->genreService->update($id);
     }
 
     public function delete()

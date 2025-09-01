@@ -26,9 +26,9 @@ class GenreService{
         return $this->genreRepository->create($request);
     }
 
-    public function update()
+    public function update($request)
     {
-        return $this->genreRepository->update();
+        return $this->genreRepository->update($request);
     }
 
     public function delete()
