@@ -19,19 +19,4 @@ class GenreController extends Controller
     {
         return $this->genreService->index();
     }
-
-    public function create($request)
-    {
-        return $this->genreService->create($request);
-    }
-
-    public function update($request , $id)
-    {
-        return $this->genreService->update($id);
-    }
-
-    public function delete()
-    {
-        return $this->genreService->delete();
-    }
 }

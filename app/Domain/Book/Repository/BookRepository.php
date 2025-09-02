@@ -15,7 +15,7 @@ class BookRepository implements BookInterface
 
     public function index()
     {
-        $books = Book::all();
+        $books = Book::with('genre')->get();
         return BookResource::collection($books);
     }
 

@@ -4,6 +4,8 @@
 namespace App\Domain\Book\Service;
 
 use App\Api\Requests\CreateBookRequest;
+use App\Api\Resources\BookResource;
+use App\Domain\Book\Model\Book;
 use App\Domain\Book\Repository\BookRepository;
 use App\Http\Requests\UpdateBookRequest;
 
@@ -35,4 +37,11 @@ class BookService{
     {
         return $this->bookRepo->delete($id);
     }
+
+    public function getBookByGenre($genre_id)
+    {
+        $book = Book::where('genre_id' , $genre_id)->get();
+        return BookResource::collection($book);
+    }
+
 }

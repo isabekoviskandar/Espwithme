@@ -37,4 +37,9 @@ class BookController extends Controller
     {
         return $this->bookSer->delete($id);
     }
+
+    public function bookFilter($genre_id)
+    {
+        return $this->bookSer->getBookByGenre($genre_id);
+    }
 }

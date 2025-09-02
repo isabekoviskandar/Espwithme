@@ -17,18 +17,4 @@ class GenreRepository implements GenreInterface
         return GenreResource::collection($genres);
     }
 
-    public function create(CreateGenreRequest $request)
-    {
-        return null;
-    }
-
-    public function update(UpdateGenreRequest $request) 
-    {
-
-    }
-
-    public function delete() 
-    {
-
-    }
 }

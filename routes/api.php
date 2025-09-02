@@ -39,6 +39,7 @@ Route::prefix('book')->group(function () {
     Route::post('/create', [BookController::class, 'create']);
     Route::put('/update/{id}', [BookController::class, 'update']);
     Route::delete('/delete/{id}', [BookController::class, 'delete']);
+    Route::get('/book-filter/{genre_id}' , [BookController::class , 'bookFilter']);
 });
 
 Route::prefix('videolesson')->group(function () {
