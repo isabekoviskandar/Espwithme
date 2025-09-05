@@ -1,5 +1,6 @@
 <?php
 
+use App\Api\Controllers\AudioController;
 use App\Api\Controllers\AuthController;
 use App\Api\Controllers\BookController;
 use App\Api\Controllers\CategoryController;
@@ -49,4 +50,8 @@ Route::prefix('videolesson')->group(function () {
 
 Route::prefix('category')->group(function () {
     Route::get('index', [CategoryController::class, 'index']);
+});
+
+Route::prefix('audio')->prefix(function(){
+    Route::get('index' , [AudioController::class ,'index']);
 });

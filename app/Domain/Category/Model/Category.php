@@ -2,6 +2,7 @@
 
 namespace App\Domain\Category\Model;
 
+use App\Domain\Audio\Model\Audio;
 use App\Domain\VideoLesson\Model\VideoLesson;
 use App\Models\Presentation;
 use Illuminate\Database\Eloquent\Model;
@@ -23,5 +24,10 @@ class Category extends Model
     public function presentation()
     {
         return $this->hasMany(Presentation::class , 'category_id');
+    }
+
+    public function audio()
+    {
+        return $this->hasMany(Audio::class);
     }
 }
