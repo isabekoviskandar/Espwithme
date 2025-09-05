@@ -52,6 +52,7 @@ Route::prefix('category')->group(function () {
     Route::get('index', [CategoryController::class, 'index']);
 });
 
-Route::prefix('audio')->prefix(function(){
+Route::prefix('audio')->group(function(){
     Route::get('index' , [AudioController::class ,'index']);
+    Route::get('audio-filter/{category_id}' , [AudioController::class , 'filterByCategoryId']);
 });

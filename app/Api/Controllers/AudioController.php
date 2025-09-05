@@ -19,4 +19,9 @@ class AudioController extends Controller
     {
         return $this->service->index();
     }
+
+    public function filterByCategoryId($category_id)
+    {
+        return $this->service->filterByCategory($category_id);
+    }
 }

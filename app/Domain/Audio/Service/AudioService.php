@@ -12,4 +12,10 @@ class AudioService{
         $audios = Audio::all();
         return AudioResource::collection($audios);
     }
+
+    public function filterByCategory($category_id)
+    {
+        $audios = Audio::where('category_id' , $category_id)->get();
+        return AudioResource::collection($audios);
+    }
 }
