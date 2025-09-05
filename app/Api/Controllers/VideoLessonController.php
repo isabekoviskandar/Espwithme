@@ -22,4 +22,9 @@ class VideoLessonController extends Controller
     {
         return $this->video_lesson->index();
     }
+
+    public function filterByCategory($category_id)
+    {
+        return $this->video_lesson->filterByCategory($category_id);
+    }
 }

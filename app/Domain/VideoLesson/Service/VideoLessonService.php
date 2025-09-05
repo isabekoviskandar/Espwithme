@@ -11,6 +11,12 @@ class VideoLessonService{
     public function index()
     {
         $video_lessons = VideoLesson::paginate();
-        return new VideoLessonResource($video_lessons);
+        return VideoLessonResource::collection($video_lessons);
+    }
+
+    public function filterByCategory($category_id)
+    {
+        $video_lessons = VideoLesson::where('category_id' , $category_id)->get();
+        return VideoLessonResource::collection($video_lessons);
     }
 }

@@ -22,30 +22,31 @@ Route::prefix('auth')->group(function () {
 
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/profile', [AuthController::class, 'user']);
-    Route::put('/change_password', [AuthController::class, 'change_password']);
+    Route::get('profile', [AuthController::class, 'user']);
+    Route::put('change-password', [AuthController::class, 'change_password']);
 });
 
 
 Route::prefix('genre')->group(function () {
-    Route::get('/index', [GenreController::class, 'index']);
-    Route::post('/create', [GenreController::class, 'create']);
-    Route::put('/update', [GenreController::class, 'update']);
-    Route::delete('/delete', [GenreController::class, 'delete']);
+    Route::get('index', [GenreController::class, 'index']);
+    Route::post('create', [GenreController::class, 'create']);
+    Route::put('update', [GenreController::class, 'update']);
+    Route::delete('delete', [GenreController::class, 'delete']);
 });
 
 Route::prefix('book')->group(function () {
-    Route::get('/index', [BookController::class, 'index']);
-    Route::post('/create', [BookController::class, 'create']);
-    Route::put('/update/{id}', [BookController::class, 'update']);
-    Route::delete('/delete/{id}', [BookController::class, 'delete']);
-    Route::get('/book-filter/{genre_id}' , [BookController::class , 'bookFilter']);
+    Route::get('index', [BookController::class, 'index']);
+    Route::post('create', [BookController::class, 'create']);
+    Route::put('update/{id}', [BookController::class, 'update']);
+    Route::delete('delete/{id}', [BookController::class, 'delete']);
+    Route::get('book-filter/{genre_id}' , [BookController::class , 'bookFilter']);
 });
 
 Route::prefix('videolesson')->group(function () {
     Route::get('index', [VideoLessonController::class, 'index']);
+    Route::get('category-filter/{category_id}' , [VideoLessonController::class , 'filterByCategory']);
 });
 
 Route::prefix('category')->group(function () {
-    Route::get('/index', [CategoryController::class, 'index']);
+    Route::get('index', [CategoryController::class, 'index']);
 });
