@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Api\Resources;
+namespace App\Api\Resources; 
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class AudioResource extends JsonResource
+class CategoryResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,10 +15,9 @@ class AudioResource extends JsonResource
     public function toArray(Request $request): array
     {
         return[
-            'category' => new CategoryResource($this->category),
-            'title' => $this->title,
-            'description' => $this->description,
-            'audio' => $this->audio,
+            'id' => $this->id,
+            'name' => $this->name,
+            'status' => $this->status,
         ];
     }
 }

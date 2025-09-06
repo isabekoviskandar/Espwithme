@@ -43,7 +43,7 @@ Route::prefix('book')->group(function () {
     Route::get('book-filter/{genre_id}' , [BookController::class , 'bookFilter']);
 });
 
-Route::prefix('videolesson')->group(function () {
+Route::prefix('video-lesson')->group(function () {
     Route::get('index', [VideoLessonController::class, 'index']);
     Route::get('category-filter/{category_id}' , [VideoLessonController::class , 'filterByCategory']);
 });

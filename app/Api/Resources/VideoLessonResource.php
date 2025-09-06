@@ -16,7 +16,7 @@ class VideoLessonResource extends JsonResource
     {
         return [
             'id'            =>$this->id,
-            'category'      =>$this->category->name,
+            'category'      => new CategoryResource($this->category),
             'title'         =>$this->title,
             'description'   =>$this->description,
             'source_url'    =>$this->source_url,
